@@ -1,7 +1,7 @@
 z3c.recipe.usercrontab changes
 ******************************
 
-0.3 (unreleased)
+0.3 (2008-02-23)
 ================
 
 * Renamed to z3c.recipe.usercrontab
