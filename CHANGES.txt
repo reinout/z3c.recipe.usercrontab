@@ -1,0 +1,21 @@
+z3c.recipe.usercrontab changes
+******************************
+
+0.3 (unreleased)
+================
+
+* Renamed to z3c.recipe.usercrontab
+* Add an option to change the command used to read and write crontabs
+* Improved tests to not modify the real crontab
+
+0.2 (2008-01-12)
+================
+
+* Warn if an entry cannot be removed in buildout uninstall
+* Break if multiple entries would be removed in buildout uninstall
+* Have del_entry return the number of removed
+
+0.1 (2008-01-12)
+================
+
+* Initial release.
