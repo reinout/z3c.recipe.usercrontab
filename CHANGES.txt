@@ -1,7 +1,12 @@
 z3c.recipe.usercrontab changes
 ******************************
 
-0.4 (unreleased)
+0.5 (unreleased)
+================
+
+* ...
+
+0.4 (2008-02-25)
 ================
 
 * Fix bug where UserCrontabs with empty readcrontab and writecrontab
