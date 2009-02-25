@@ -61,10 +61,9 @@ class UserCrontabManager(object):
     username = None
     crontab = []
 
-    def __init__(self, readcrontab=defaultreadcrontab,
-                       writecrontab=defaultwritecrontab):
-        self.readcrontab = readcrontab
-        self.writecrontab = writecrontab
+    def __init__(self, readcrontab=None, writecrontab=None):
+        self.readcrontab = readcrontab or defaultreadcrontab
+        self.writecrontab = writecrontab or defaultwritecrontab
 
     def read_crontab(self):
         self.crontab = [ l.strip("\n") for l in

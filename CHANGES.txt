@@ -4,7 +4,8 @@ z3c.recipe.usercrontab changes
 0.4 (unreleased)
 ================
 
-* ...
+* Fix bug where UserCrontabs with empty readcrontab and writecrontab
+  constructor arguments where broken
 
 0.3 (2008-02-23)
 ================
