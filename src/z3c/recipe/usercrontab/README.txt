@@ -14,6 +14,10 @@ installing of cronjobs into user crontabs.
     >>> from z3c.recipe.usercrontab.usercrontab import UserCrontabManager
     >>> c = UserCrontabManager()
 
+
+Entry and environment handling
+------------------------------
+
 For these tests, we fake a crontab by filling the list of cron entries
 for this object:
 
@@ -113,6 +117,46 @@ first entry is not disturbed:
     @reboot echo "Someone will see this"
     MAILTO=""
     @reboot echo "No-one will see this"
+
+When introducing a new environment variable to leave markers which buildout is
+used, the mix between the environment is right:
+
+    >>> c.crontab = ['MAILTO=""', 'BUILDOUT=my/path', '@reboot echo "no mailto, my/path"']
+    >>> print c
+    MAILTO=""
+    BUILDOUT=my/path
+    @reboot echo "no mailto, my/path"
+    >>> c.add_entry('@reboot echo "no mailto, my/other"', MAILTO="", BUILDOUT="my/other")
+    >>> print c
+    MAILTO=""
+    BUILDOUT=my/path
+    @reboot echo "no mailto, my/path"
+    BUILDOUT=my/other
+    @reboot echo "no mailto, my/other"
+    >>> c.add_entry('@reboot echo "no mailto, my/other, bla"', MAILTO="", BUILDOUT="my/other")
+    >>> print c
+    MAILTO=""
+    BUILDOUT=my/path
+    @reboot echo "no mailto, my/path"
+    BUILDOUT=my/other
+    @reboot echo "no mailto, my/other, bla"
+    @reboot echo "no mailto, my/other"
+    >>> c.add_entry('@reboot echo "mailto example, my/path"',
+    ...             MAILTO="something@example.com", BUILDOUT="my/path")
+    >>> print c
+    MAILTO=""
+    BUILDOUT=my/path
+    @reboot echo "no mailto, my/path"
+    BUILDOUT=my/other
+    @reboot echo "no mailto, my/other, bla"
+    @reboot echo "no mailto, my/other"
+    MAILTO=something@example.com
+    BUILDOUT=my/path
+    @reboot echo "mailto example, my/path"
+
+
+Read/write crontab methods
+--------------------------
 
 Next, test the read_crontab and write_crontab methods; we'll use
 ``cat`` and a temporary file to not modifiy the crontab of the user
