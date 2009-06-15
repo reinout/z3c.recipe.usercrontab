@@ -175,7 +175,7 @@ but it might warrant an exception. TODO.
     @reboot echo "mailto example, my/path"
 
 The environment variable is mainly used for grouping items per buildout. Now
-for some upgrade testing.  Pre 0.4 versions of this recipe did not group
+for some upgrade testing.  Pre-0.5 versions of this recipe did not group
 entries per buildout.  We'll add an entry without such a "grouping environment
 variable". First the start situation:
 

@@ -124,7 +124,7 @@ class UserCrontabManager(object):
             if (entry == line and
                 'BUILDOUT' in env and
                 'BUILDOUT' not in cur_env):
-                # Possibly line we have to migrate post-0.3.
+                # Possibly line we have to migrate post-0.4.
                 temp_env = cur_env.copy()
                 temp_env['BUILDOUT'] = env['BUILDOUT']
                 if dict_pmatch(env, temp_env):
