@@ -11,19 +11,21 @@
 import os
 import re
 
+
 def escape_string(s):
     """
     Do a smart escape of string s, wrapping it in quotes and escaping
     those quotes if necessary. If the first or last byte is a space,
     also quote the string.
     """
-    for c,d in (('"', "'"), ("'", '"')):
+    for c, d in (('"', "'"), ("'", '"')):
         if c in s:
             return '%s%s%s' % (d, s.replace(d, '\\'+d), d)
     if len(s)==0 or s[0].isspace() or s[-1].isspace():
         return '"%s"' % s
 
     return s
+
 
 def unescape_string(s):
     """
@@ -41,7 +43,7 @@ def dict_pmatch(d1, d2):
     """
     Returns true if all keys in d1 are in d2 and all values match
     """
-    for k,v in d1.iteritems():
+    for k, v in d1.iteritems():
         if not (k in d2 and d2[k]==v):
             return False
     return True
@@ -52,6 +54,7 @@ env_re = re.compile(r'^("[^"]*"|\'[^\']*\'|[^\s]+)\s*='
 
 defaultreadcrontab = "crontab -l"
 defaultwritecrontab = "crontab -"
+
 
 class UserCrontabManager(object):
     """
@@ -66,8 +69,8 @@ class UserCrontabManager(object):
         self.writecrontab = writecrontab or defaultwritecrontab
 
     def read_crontab(self):
-        self.crontab = [ l.strip("\n") for l in
-                         os.popen(self.readcrontab, "r") ]
+        self.crontab = [l.strip("\n") for l in
+                        os.popen(self.readcrontab, "r")]
 
     def write_crontab(self):
         fd = os.popen(self.writecrontab, "w")
@@ -90,21 +93,21 @@ class UserCrontabManager(object):
         for l in self.crontab:
             m = env_re.match(l)
             if m:
-                cur_env[unescape_string(m.group(1))] = unescape_string(m.group(2))
+                cur_env[unescape_string(m.group(1))] = unescape_string(
+                    m.group(2))
             new_crontab.append(l)
             if not done and dict_pmatch(env, cur_env):
                 new_crontab.append(line)
                 done = True
 
         if (not done):
-            for (k,v) in env.iteritems():
+            for (k, v) in env.iteritems():
                 if k not in cur_env or cur_env[k] != v:
                     new_crontab.append('%s=%s' % (escape_string(k),
                                                   escape_string(v)))
             new_crontab.append(line)
 
         self.crontab = new_crontab
-
 
     def del_entry(self, line):
         """
@@ -123,7 +126,7 @@ class UserCrontabManager(object):
         for l in reversed(self.crontab):
             m = env_re.match(l)
             if m:
-                k,v = unescape_string(m.group(1)), unescape_string(m.group(2))
+                k, v = unescape_string(m.group(1)), unescape_string(m.group(2))
                 if dangling:
                     continue
                 if nuked is True:
@@ -137,9 +140,9 @@ class UserCrontabManager(object):
                     continue
                 else:
                     if len(l.strip()):
-                       dangling = False
-                       nuked=False
-                       fresh_env = {}
+                        dangling = False
+                        nuked=False
+                        fresh_env = {}
             new_crontab.append(l)
-        self.crontab = [l for l in reversed(new_crontab) ]
+        self.crontab = [l for l in reversed(new_crontab)]
         return num_nuked
