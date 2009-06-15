@@ -96,6 +96,9 @@ class UserCrontabManager(object):
     def write_crontab(self):
         fd = os.popen(self.writecrontab, "w")
         for l in self.crontab:
+            if l.startswith('BUILDOUT='):
+                # empty line for better between-buildout visual separation.
+                fd.write('\n')
             fd.write("%s\n" % l)
         fd.close()
 

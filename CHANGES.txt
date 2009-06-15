@@ -1,32 +1,38 @@
 z3c.recipe.usercrontab changes
-******************************
+==============================
 
 0.5 (unreleased)
-================
+----------------
 
-* ...
+* Added extra blank line in front of "BUILDOUT=..." variable to allow for
+  better readability.  [reinout]
+
+* Added "BUILDOUT=...." as environment variable for every set of crontab lines
+  handled by one buildout.  This makes it much easier to spot what got added
+  by which buildout (in case you have multiple) or which buildout at all (if
+  you have no clue where the buildout can be found).  [reinout]
 
 0.4 (2008-02-25)
-================
+----------------
 
 * Fix bug where UserCrontabs with empty readcrontab and writecrontab
   constructor arguments where broken
 
 0.3 (2008-02-23)
-================
+----------------
 
 * Renamed to z3c.recipe.usercrontab
 * Add an option to change the command used to read and write crontabs
 * Improved tests to not modify the real crontab
 
 0.2 (2008-01-12)
-================
+----------------
 
 * Warn if an entry cannot be removed in buildout uninstall
 * Break if multiple entries would be removed in buildout uninstall
 * Have del_entry return the number of removed
 
 0.1 (2008-01-12)
-================
+----------------
 
 * Initial release.
