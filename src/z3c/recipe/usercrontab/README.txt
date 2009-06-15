@@ -154,6 +154,26 @@ used, the mix between the environment is right:
     BUILDOUT=my/path
     @reboot echo "mailto example, my/path"
 
+Adding an extra environment variable to an existing entry results in a second
+entry, but with the extra environment variable.  This is technically correct,
+but it might warrant an exception. TODO.
+
+    >>> c.add_entry('@reboot echo "mailto example, my/path"',
+    ...             MAILTO="something@example.com", BUILDOUT="my/path",
+    ...             BLA='bla')
+    >>> print c
+    MAILTO=""
+    BUILDOUT=my/path
+    @reboot echo "no mailto, my/path"
+    BUILDOUT=my/other
+    @reboot echo "no mailto, my/other, bla"
+    @reboot echo "no mailto, my/other"
+    MAILTO=something@example.com
+    BUILDOUT=my/path
+    @reboot echo "mailto example, my/path"
+    BLA=bla
+    @reboot echo "mailto example, my/path"
+
 
 Read/write crontab methods
 --------------------------
