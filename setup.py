@@ -11,7 +11,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '0.5dev'
+version = '0.5'
 name = 'z3c.recipe.usercrontab'
 
 def read(*rnames):
