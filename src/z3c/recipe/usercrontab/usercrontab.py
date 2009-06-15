@@ -105,7 +105,7 @@ class UserCrontabManager(object):
     def __repr__(self):
         return "\n".join(self.crontab)
 
-    def add_entry(self, line, **env):
+    def add_entry(self, entry, **env):
         """
         Add an entry to a crontab, if kw's are set, set environment args
         to be like that.
@@ -114,14 +114,31 @@ class UserCrontabManager(object):
         new_crontab = []
         done = False
 
-        for l in self.crontab:
-            m = env_re.match(l)
-            if m:
-                cur_env[unescape_string(m.group(1))] = unescape_string(
-                    m.group(2))
-            new_crontab.append(l)
-            if not done and dict_pmatch(env, cur_env):
+        for line in self.crontab:
+            match = env_re.match(line)
+            if match:
+                # We have an environment statement ('MAILTO=something')
+                env_key = match.group(1)
+                env_value = match.group(2)
+                cur_env[unescape_string(env_key)] = unescape_string(env_value)
+            if (entry == line and
+                'BUILDOUT' in env and
+                'BUILDOUT' not in cur_env):
+                # Possibly line we have to migrate post-0.3.
+                temp_env = cur_env.copy()
+                temp_env['BUILDOUT'] = env['BUILDOUT']
+                if dict_pmatch(env, temp_env):
+                    # Don't copy the entry, it will be added in the proper
+                    # environment later.
+                    pass
+                else:
+                    # Normal behaviour, just copy the line.
+                    new_crontab.append(line)
+            else:
+                # Normal behaviour, just copy the line.
                 new_crontab.append(line)
+            if not done and dict_pmatch(env, cur_env):
+                new_crontab.append(entry)
                 done = True
 
         if (not done):
@@ -129,7 +146,7 @@ class UserCrontabManager(object):
                 if k not in cur_env or cur_env[k] != v:
                     new_crontab.append('%s=%s' % (escape_string(k),
                                                   escape_string(v)))
-            new_crontab.append(line)
+            new_crontab.append(entry)
 
         self.crontab = new_crontab
 

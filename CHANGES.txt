@@ -4,6 +4,9 @@ z3c.recipe.usercrontab changes
 0.5 (unreleased)
 ----------------
 
+* Added migration code for pre-0.4 entries without a BUILDOUT variable.
+  [reinout]
+
 * Added extra blank line in front of "BUILDOUT=..." variable to allow for
   better readability.  [reinout]
 
