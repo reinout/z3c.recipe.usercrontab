@@ -49,8 +49,29 @@ def dict_pmatch(d1, d2):
     return True
 
 
-env_re = re.compile(r'^("[^"]*"|\'[^\']*\'|[^\s]+)\s*='
-                     '\s*("[^"]*"|\'[^\']*\'|[^"\']+)?[^\s]*$')
+env_re = re.compile(
+    r'''
+    ^            # Start of line
+    (            # begin first group
+    "[^"]*"      #   something enclosed in double quotes
+    |\'[^\']*\'  #   OR something enclosed in single quotes
+    |[^\s]+      #   OR some non-space-containing string
+    )            # end first group
+
+    \s*=\s*      # "=" surrounded by spaces
+
+    (            # start second group
+    "[^"]*"      #   something enclosed in double quotes
+    |\'[^\']*\'  #   OR something enclosed in single quotes
+    |[^"\']+     #   OR something that does not have quotes
+    )?           # end of *optional* second group
+
+    [^\s]*       # trailing whitespace
+    $            # end of line
+    ''',
+    re.VERBOSE)
+
+
 
 defaultreadcrontab = "crontab -l"
 defaultwritecrontab = "crontab -"
