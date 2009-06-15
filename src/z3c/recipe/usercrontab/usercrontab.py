@@ -96,9 +96,6 @@ class UserCrontabManager(object):
     def write_crontab(self):
         fd = os.popen(self.writecrontab, "w")
         for l in self.crontab:
-            if l.startswith('BUILDOUT='):
-                # empty line for better between-buildout visual separation.
-                fd.write('\n')
             fd.write("%s\n" % l)
         fd.close()
 
@@ -144,6 +141,9 @@ class UserCrontabManager(object):
         if (not done):
             for (k, v) in env.iteritems():
                 if k not in cur_env or cur_env[k] != v:
+                    if k == 'BUILDOUT':
+                        # empty line for better between-buildout visual separation.
+                        new_crontab.append('')
                     new_crontab.append('%s=%s' % (escape_string(k),
                                                   escape_string(v)))
             new_crontab.append(entry)
