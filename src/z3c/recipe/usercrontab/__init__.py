@@ -16,7 +16,6 @@ class UserCrontab:
 
     def __init__(self, buildout, name, options):
         self.options = options
-
         options['entry'] = '%s\t%s' % (options['times'], options['command'])
         readcrontab = self.options.get('readcrontab', None)
         writecrontab = self.options.get('writecrontab', None)
@@ -27,12 +26,9 @@ class UserCrontab:
             identifier=self.options['identifier'])
 
     def install(self):
-        crontab = self.crontab
-
-        crontab.read_crontab()
-        crontab.add_entry(self.options['entry'])
-        crontab.write_crontab()
-
+        self.crontab.read_crontab()
+        self.crontab.add_entry(self.options['entry'])
+        self.crontab.write_crontab()
         return ()
 
     def update(self):
