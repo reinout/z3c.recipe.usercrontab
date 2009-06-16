@@ -4,7 +4,11 @@ z3c.recipe.usercrontab changes
 0.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Removed essentially-unused complete environment variable handling.
+  [reinout]
+
+- Adding our entries with descriptive comments now: it includes the buildout
+  file and the part name.  [reinout]
 
 
 0.5.1 (2009-06-16)
