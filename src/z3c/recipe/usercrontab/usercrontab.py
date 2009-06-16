@@ -117,25 +117,17 @@ class UserCrontabManager(object):
                 # We have an environment statement ('MAILTO=something')
                 env_key = match.group(1)
                 env_value = match.group(2)
+                if env_key == 'BUILDOUT':
+                    # Feature only available in 0.5, reverted in 0.5.1: we
+                    # omit this environment variable now.
+                    continue
                 cur_env[unescape_string(env_key)] = unescape_string(env_value)
-            if (entry == line and
-                'BUILDOUT' in env and
-                'BUILDOUT' not in cur_env):
-                # Possibly line we have to migrate post-0.4.
-                temp_env = cur_env.copy()
-                temp_env['BUILDOUT'] = env['BUILDOUT']
-                if dict_pmatch(env, temp_env):
-                    # Don't copy the entry, it will be added in the proper
-                    # environment later.
-                    pass
-                else:
-                    # Normal behaviour, just copy the line.
-                    new_crontab.append(line)
-            else:
-                # Normal behaviour, just copy the line.
-                new_crontab.append(line)
+
+            new_crontab.append(line)
             if not done and dict_pmatch(env, cur_env):
-                new_crontab.append(entry)
+                if line != entry:
+                    # Not already added 3 lines above...
+                    new_crontab.append(entry)
                 done = True
 
         if (not done):
