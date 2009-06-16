@@ -8,25 +8,52 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 
-import zc.buildout.testing
-
 import unittest
-import zope.testing
+import zc.buildout.tests
+import zc.buildout.testing
 from zope.testing import doctest, renormalizing
 
-from z3c.recipe.usercrontab import UserCrontabManager
 
-usercrontab = UserCrontabManager(identifier='test')
+optionflags = (doctest.ELLIPSIS
+               |doctest.NORMALIZE_WHITESPACE
+               )
+
 
 def setUp(test):
     zc.buildout.testing.buildoutSetUp(test)
-    usercrontab.read_crontab() # Store current user's real crontab.
+
+    # Install the recipe in develop mode
     zc.buildout.testing.install_develop('z3c.recipe.usercrontab', test)
+    # Install any other recipes that should be available in the tests
+
+    # Store current user's real crontab.
+    from z3c.recipe.usercrontab import UserCrontabManager
+    test.usercrontab = UserCrontabManager(identifier='test')
+    test.usercrontab.read_crontab()
+
 
 def tearDown(test):
     zc.buildout.testing.buildoutTearDown(test)
-    usercrontab.write_crontab() # Restore current user's real crontab.
+    # Restore current user's real crontab.
+    test.usercrontab.write_crontab()
+
 
 def test_suite():
-    return unittest.TestSuite(doctest.DocFileSuite('README.txt', setUp=setUp,
-                                                   tearDown=tearDown))
+    suite = unittest.TestSuite((
+        doctest.DocFileSuite(
+            'README.txt',
+            setUp=setUp,
+            tearDown=tearDown,
+            optionflags=optionflags,
+            checker=renormalizing.RENormalizing([
+                # If want to clean up the doctest output you
+                # can register additional regexp normalizers
+                # here. The format is a two-tuple with the RE
+                # as the first item and the replacement as the
+                # second item, e.g.
+                # (re.compile('my-[rR]eg[eE]ps'), 'my-regexps')
+                zc.buildout.testing.normalize_path,
+                ]),
+            ),
+        ))
+    return suite
