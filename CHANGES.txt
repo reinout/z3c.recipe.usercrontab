@@ -1,7 +1,7 @@
 z3c.recipe.usercrontab changes
 ==============================
 
-0.6 (unreleased)
+0.6 (2009-06-16)
 ----------------
 
 - Removed essentially-unused complete environment variable handling.
