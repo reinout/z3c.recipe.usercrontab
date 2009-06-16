@@ -16,6 +16,7 @@ from zope.testing import doctest, renormalizing
 
 optionflags = (doctest.ELLIPSIS
                |doctest.NORMALIZE_WHITESPACE
+               |doctest.REPORT_NDIFF
                )
 
 
