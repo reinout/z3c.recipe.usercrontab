@@ -1,8 +1,8 @@
 z3c.recipe.usercrontab changes
 ==============================
 
-0.6 (unreleased)
-----------------
+0.5.1 (2009-06-16)
+------------------
 
 - Reverted the "BUILDOUT=..." environment variable, including migration.  I'll
   add a better way after this release.  [reinout] 
