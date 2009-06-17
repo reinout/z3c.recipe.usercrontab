@@ -1,14 +1,7 @@
 .. -*- mode: doctest -*-
 
-# Copyright (c) 2009 Zope Foundation and contributors.
-# All Rights Reserved.
-#
-# This software is subject to the provisions of the Zope Public License,
-# Version 2.1 (ZPL). A copy of the ZPL should accompany this distribution.
-# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
-# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
-# FOR A PARTICULAR PURPOSE.
+Detailed documentation
+======================
 
 The recipe z3c.recipe.usercrontab is a small recipe to facilitate the
 installing of cronjobs into user crontabs.

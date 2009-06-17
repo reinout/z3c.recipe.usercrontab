@@ -4,7 +4,7 @@ z3c.recipe.usercrontab changes
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Documentation fixes.  [reinout]
 
 
 0.6 (2009-06-16)
