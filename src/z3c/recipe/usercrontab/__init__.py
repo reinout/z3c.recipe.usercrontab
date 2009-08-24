@@ -32,7 +32,7 @@ class UserCrontab:
         return ()
 
     def update(self):
-        pass
+        self.install()
 
 
 def uninstall_usercrontab(name, options):

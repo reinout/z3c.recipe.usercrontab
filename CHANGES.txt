@@ -4,7 +4,8 @@ z3c.recipe.usercrontab changes
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- The crontab now gets checked every time buildout runs, not only when there's
+  a change in the configuration.  [reinout]
 
 
 0.6.1 (2009-06-17)
