@@ -15,7 +15,7 @@ version = '0.8dev'
 name = 'z3c.recipe.usercrontab'
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    return open(os.path.join(*rnames)).read()
 
 setup(name=name,
       version=version,
