@@ -19,8 +19,8 @@ def read(*rnames):
 
 setup(name=name,
       version=version,
-      author='Jasper Spaans, Jan-Jaap Driessen',
-      author_email='jspaans@thehealthagency.com',
+      author='The Health Agency',
+      author_email='techniek@thehealthagency.com',
       license='ZPL',
       classifiers=[
           "Development Status :: 4 - Beta",

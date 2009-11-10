@@ -33,3 +33,13 @@ your buildout.cfg::
 
 and finally add ``mycronjob`` to the ``parts`` line(s) of your
 buildout.cfg
+
+
+Credits
+=======
+
+Original authors: Jasper Spaans and Jan-Jaap Driessen at `The Health Agency
+<http://www.thehealthagency.com>`_.
+
+Most recent versions: `Reinout van Rees <http://reinout.vanrees.org>`_, also
+at `The Health Agency <http://www.thehealthagency.com>`_
