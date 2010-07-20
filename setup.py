@@ -41,6 +41,7 @@ setup(name=name,
       namespace_packages=['z3c', 'z3c.recipe'],
       include_package_data=True,
       install_requires=['setuptools', 'zc.buildout'],
+      extras_require = dict(test=['zope.testing']),
       entry_points={
           'zc.buildout': ['default = %s:UserCrontab' % name],
           'zc.buildout.uninstall': ['default = %s:uninstall_usercrontab' % name]
