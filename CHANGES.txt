@@ -4,7 +4,9 @@ z3c.recipe.usercrontab changes
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Append and prepend less white space per cron item, so you do not get
+  increasing extra white space everytime you run bin/buildout.
+  [maurits]
 
 
 1.0 (2009-11-10)

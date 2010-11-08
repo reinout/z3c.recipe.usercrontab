@@ -89,8 +89,13 @@ class UserCrontabManager(object):
             # But preferably in our existing location.
             self.crontab[start:end] = []
             inject_at = start
+            # There is some white space already, so we only insert
+            # entry and markers.
+            to_inject = [self.prepend, entry, self.append]
+        else:
+            # Insert entry, markers, and white space
+            to_inject = ['', self.prepend, entry, self.append]
 
-        to_inject = ['', self.prepend, entry, self.append, '']
         if inject_at == -1:
             # [-1:-1] would inject before the last item...
             self.crontab += to_inject
