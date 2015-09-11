@@ -21,8 +21,9 @@ def read(*rnames):
 
 setup(name=name,
       version=version,
-      author='The Health Agency',
-      author_email='techniek@thehealthagency.com',
+      author='Reinout van Rees',
+      author_email='reinout@vanrees.org',
+      url='https://github.com/reinout/z3c.recipe.usercrontab',
       license='ZPL',
       classifiers=[
           "Development Status :: 6 - Mature",
