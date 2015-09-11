@@ -31,11 +31,11 @@ setup(name=name,
           "License :: OSI Approved :: Zope Public License"
           ],
       description="User Crontab install buildout recipe",
-      long_description=(read('README.txt') +
+      long_description=(read('README.rst') +
                         '\n\n' +
-                        read('src/z3c/recipe/usercrontab/README.txt') +
+                        read('src/z3c/recipe/usercrontab/README.rst') +
                         '\n\n' +
-                        read('CHANGES.txt')),
+                        read('CHANGES.rst')),
       package_dir={'': 'src'},
       packages=find_packages('src'),
       namespace_packages=['z3c', 'z3c.recipe'],
