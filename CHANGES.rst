@@ -4,7 +4,10 @@ z3c.recipe.usercrontab changes
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Moved development to https://github.com/reinout/z3c.recipe.usercrontab
+  [reinout]
+
+- Made a few small fixes to get everything running on python 3.
 
 
 1.1 (2010-11-09)
@@ -49,7 +52,7 @@ z3c.recipe.usercrontab changes
 ------------------
 
 - Reverted the "BUILDOUT=..." environment variable, including migration.  I'll
-  add a better way after this release.  [reinout] 
+  add a better way after this release.  [reinout]
 
 
 0.5 (2009-06-15)
