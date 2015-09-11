@@ -1,6 +1,12 @@
 z3c.recipe.usercrontab changes
 ==============================
 
+1.3 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
 1.2 (2015-09-11)
 ----------------
 
