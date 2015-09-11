@@ -1,0 +1,5 @@
+include *.py
+include *.rst
+include *.txt
+exclude buildout.cfg
+recursive-include z3c *.rst
