@@ -8,15 +8,17 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 
+#from zope.testing import doctestcase
+from zope.testing import renormalizing
+
+import doctest
 import unittest
-import zc.buildout.tests
 import zc.buildout.testing
-from zope.testing import doctest, renormalizing
 
 
 optionflags = (doctest.ELLIPSIS
-               |doctest.NORMALIZE_WHITESPACE
-               |doctest.REPORT_NDIFF)
+               | doctest.NORMALIZE_WHITESPACE
+               | doctest.REPORT_NDIFF)
 
 
 def setUp(test):
@@ -41,7 +43,7 @@ def tearDown(test):
 def test_suite():
     suite = unittest.TestSuite((
         doctest.DocFileSuite(
-            'README.txt',
+            'README.rst',
             setUp=setUp,
             tearDown=tearDown,
             optionflags=optionflags,
