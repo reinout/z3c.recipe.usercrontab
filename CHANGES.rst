@@ -1,7 +1,7 @@
 z3c.recipe.usercrontab changes
 ==============================
 
-1.2 (unreleased)
+1.2 (2015-09-11)
 ----------------
 
 - Moved development to https://github.com/reinout/z3c.recipe.usercrontab
