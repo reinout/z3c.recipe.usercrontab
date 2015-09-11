@@ -12,6 +12,3 @@ install:
   - bin/buildout
 script:
   - bin/test
-matrix:
-  allow_failures:
-    - python: 3.4
