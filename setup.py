@@ -25,12 +25,14 @@ setup(name=name,
       author_email='techniek@thehealthagency.com',
       license='ZPL',
       classifiers=[
-          "Development Status :: 4 - Beta",
+          "Development Status :: 6 - Mature",
           "Framework :: Buildout",
           "Intended Audience :: Developers",
           "Topic :: Software Development :: Build Tools",
           "Topic :: Software Development :: Libraries :: Python Modules",
           "License :: OSI Approved :: Zope Public License"
+          "Programming Language :: Python :: 2.7",
+          "Programming Language :: Python :: 3",
           ],
       description="User Crontab install buildout recipe",
       long_description='\n\n'.join([
