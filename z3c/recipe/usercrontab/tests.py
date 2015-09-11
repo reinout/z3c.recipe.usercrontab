@@ -8,7 +8,6 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 
-#from zope.testing import doctestcase
 from zope.testing import renormalizing
 
 import doctest

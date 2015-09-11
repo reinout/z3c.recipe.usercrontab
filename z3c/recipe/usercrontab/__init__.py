@@ -45,7 +45,7 @@ def uninstall_usercrontab(name, options):
         identifier=identifier)
     crontab.read_crontab()
     nuked = crontab.del_entry(options['entry'])
-    if nuked==0:
+    if nuked == 0:
         logging.getLogger(name).warning(
             "WARNING: Did not find a crontab-entry during uninstall; "
             "please check manually if everything was removed correctly")

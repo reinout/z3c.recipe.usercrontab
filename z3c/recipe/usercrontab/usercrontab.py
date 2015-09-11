@@ -81,7 +81,7 @@ class UserCrontabManager(object):
 
         """
         start, end, old_warning_marker = self.find_boundaries()
-        inject_at = -1 # By default at the end of the file.
+        inject_at = -1  # By default at the end of the file.
         if old_warning_marker:
             # At least in front of the old warning marker.
             inject_at = old_warning_marker
@@ -122,15 +122,15 @@ class UserCrontabManager(object):
                     # AFTER the end marker to selected it with [start:end].
                     end = end + 1
             if end == len(self.crontab):
-                end = None # Otherwise the last line stays in place
+                end = None  # Otherwise the last line stays in place
             self.crontab[start:end] = []
-            return 1 # Number of entries that are removed.
+            return 1  # Number of entries that are removed.
 
         if old_warning_marker is not None:
             old = len(self.crontab[old_warning_marker:])
             self.crontab[old_warning_marker:] = [
                 line for line in self.crontab[old_warning_marker:]
-                 if line != entry]
+                if line != entry]
             new = len(self.crontab[old_warning_marker:])
 
             # Cleanup when possible
