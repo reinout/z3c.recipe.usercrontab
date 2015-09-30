@@ -224,7 +224,7 @@ You can also add a comment to the crontab entry:
     ... readcrontab = cat %(crontest)s
     ... writecrontab = cat >%(crontest)s
     ... ''' % ( { 'crontest': crontestfile } ))
-    >>> 'Updating foo' in system(buildout)
+    >>> 'Installing foo' in system(buildout)
     True
     >>> c.read_crontab()
     >>> print(c)
