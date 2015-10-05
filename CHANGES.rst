@@ -1,7 +1,7 @@
 z3c.recipe.usercrontab changes
 ==============================
 
-1.3 (unreleased)
+1.3 (2015-10-05)
 ----------------
 
 - New 'comment' option. This way you can add a small explanatory one-line
