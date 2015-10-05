@@ -4,7 +4,9 @@ z3c.recipe.usercrontab changes
 1.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add enabled-option. By setting this to False, you can generate
+  cronjobs that are commented out.
+  [WouterVH]
 
 
 1.3 (2015-10-05)

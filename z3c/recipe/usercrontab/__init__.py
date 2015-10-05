@@ -10,6 +10,7 @@
 
 import logging
 from z3c.recipe.usercrontab.usercrontab import UserCrontabManager
+from zc.recipe.egg.egg import get_bool
 
 
 class UserCrontab:
@@ -18,6 +19,9 @@ class UserCrontab:
         self.options = options
         options['entry'] = '%s\t%s' % (options['times'], options['command'])
         self.comment = options.get('comment')
+        if not get_bool(self.options, 'enabled', default=True):
+            self.options['entry'] = '# ' + self.options['entry']
+
         # readcrontab and writecrontab are solely for testing.
         readcrontab = self.options.get('readcrontab', None)
         writecrontab = self.options.get('writecrontab', None)
