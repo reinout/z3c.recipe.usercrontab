@@ -43,7 +43,7 @@ setup(name=name,
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['z3c', 'z3c.recipe'],
       include_package_data=True,
-      install_requires=['setuptools', 'zc.buildout'],
+      install_requires=['setuptools', 'zc.buildout', 'zc.recipe.egg'],
       extras_require = {'test': ['zope.testing']},
       entry_points={
           'zc.buildout': ['default = %s:UserCrontab' % name],
