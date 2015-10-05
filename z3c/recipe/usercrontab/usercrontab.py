@@ -74,12 +74,17 @@ class UserCrontabManager(object):
                 old_warning_marker = line_number
         return start, end, old_warning_marker
 
-    def add_entry(self, entry):
+    def add_entry(self, entry, comment=None):
         """Add an entry to the crontab.
 
         Find lines enclosed by APPEND/PREPEND, zap and re-add.
 
         """
+        if comment is None:
+            to_inject = [self.prepend, entry, self.append]
+        else:
+            comment = '# ' + comment
+            to_inject = [self.prepend, comment, entry, self.append]
         start, end, old_warning_marker = self.find_boundaries()
         inject_at = -1  # By default at the end of the file.
         if old_warning_marker:
@@ -89,12 +94,9 @@ class UserCrontabManager(object):
             # But preferably in our existing location.
             self.crontab[start:end] = []
             inject_at = start
-            # There is some white space already, so we only insert
-            # entry and markers.
-            to_inject = [self.prepend, entry, self.append]
         else:
-            # Insert entry, markers, and white space
-            to_inject = ['', self.prepend, entry, self.append]
+            # New entry. Also insert a whiteline at the start
+            to_inject = [''] + to_inject
 
         if inject_at == -1:
             # [-1:-1] would inject before the last item...

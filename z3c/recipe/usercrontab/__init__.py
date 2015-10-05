@@ -17,8 +17,11 @@ class UserCrontab:
     def __init__(self, buildout, name, options):
         self.options = options
         options['entry'] = '%s\t%s' % (options['times'], options['command'])
+        self.comment = options.get('comment')
+        # readcrontab and writecrontab are solely for testing.
         readcrontab = self.options.get('readcrontab', None)
         writecrontab = self.options.get('writecrontab', None)
+
         self.options['identifier'] = '%s [%s]' % (
             buildout['buildout']['directory'], name)
         self.crontab = UserCrontabManager(
@@ -27,7 +30,7 @@ class UserCrontab:
 
     def install(self):
         self.crontab.read_crontab()
-        self.crontab.add_entry(self.options['entry'])
+        self.crontab.add_entry(self.options['entry'], self.comment)
         self.crontab.write_crontab()
         return ()
 
