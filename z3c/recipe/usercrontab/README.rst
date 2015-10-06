@@ -269,7 +269,7 @@ the enabled-option to False:
     ... recipe = z3c.recipe.usercrontab
     ... times = @reboot
     ... command = echo nothing happens
-    ... enabled = False
+    ... enabled = false
     ... readcrontab = cat %(crontest)s
     ... writecrontab = cat >%(crontest)s
     ... ''' % ( { 'crontest': crontestfile } ))
