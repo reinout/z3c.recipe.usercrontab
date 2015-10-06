@@ -7,10 +7,11 @@
 # WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
-
 import logging
+
+from zc.buildout.buildout import bool_option
+
 from z3c.recipe.usercrontab.usercrontab import UserCrontabManager
-from zc.recipe.egg.egg import get_bool
 
 
 class UserCrontab:
@@ -19,7 +20,7 @@ class UserCrontab:
         self.options = options
         options['entry'] = '%s\t%s' % (options['times'], options['command'])
         self.comment = options.get('comment')
-        if not get_bool(self.options, 'enabled', default=True):
+        if not bool_option(self.options, 'enabled', default=True):
             self.options['entry'] = '# ' + self.options['entry']
 
         # readcrontab and writecrontab are solely for testing.
