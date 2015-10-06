@@ -26,6 +26,7 @@ def setUp(test):
     # Install the recipe in develop mode
     zc.buildout.testing.install_develop('z3c.recipe.usercrontab', test)
     # Install any other recipes that should be available in the tests
+    zc.buildout.testing.install('zc.recipe.egg', test)
 
     # Store current user's real crontab.
     from z3c.recipe.usercrontab import UserCrontabManager
