@@ -49,7 +49,7 @@ that is commented out by setting ``enabled`` to ``False``::
  recipe = z3c.recipe.usercrontab
  times = 0 12 * * *
  command = echo nothing happens at noon
- enabled = False
+ enabled = false
 
 After running the buildout, you can check the generated cron-entries
 via ``crontab -l``.
