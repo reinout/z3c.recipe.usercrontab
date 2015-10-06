@@ -245,7 +245,7 @@ An entry is by default enabled, leading to an active cronjob:
     ... recipe = z3c.recipe.usercrontab
     ... times = @reboot
     ... command = echo nothing happens
-    ... enabled = True
+    ... enabled = true
     ... readcrontab = cat %(crontest)s
     ... writecrontab = cat >%(crontest)s
     ... ''' % ( { 'crontest': crontestfile } ))
