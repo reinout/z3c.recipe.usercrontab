@@ -34,6 +34,26 @@ your buildout.cfg::
 and finally add ``mycronjob`` to the ``parts`` line(s) of your
 buildout.cfg
 
+To add a comment to your cron-entry::
+
+ [mycronjob]
+ recipe = z3c.recipe.usercrontab
+ times = 0 12 * * *
+ command = echo nothing happens at noon
+ comment = Run daily at noon
+
+If you prefer to manually enable cronjobs, you can generate a cron-entry
+that is commented out by setting ``enabled`` to ``False``::
+
+ [mycronjob]
+ recipe = z3c.recipe.usercrontab
+ times = 0 12 * * *
+ command = echo nothing happens at noon
+ enabled = false
+
+After running the buildout, you can check the generated cron-entries
+via ``crontab -l``.
+
 
 Credits
 -------

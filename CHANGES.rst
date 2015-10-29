@@ -4,7 +4,13 @@ z3c.recipe.usercrontab changes
 1.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added an ``enabled`` option that's on by default. By setting this to false,
+  you can generate cronjobs that are commented out.
+
+  This can be useful if you have to perform other tasks in your deployment
+  before a cronjob can be switched on (by uncommenting manually or by a
+  script).
+  [WouterVH]
 
 
 1.3 (2015-10-05)
