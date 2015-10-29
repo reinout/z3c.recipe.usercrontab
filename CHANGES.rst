@@ -1,7 +1,7 @@
 z3c.recipe.usercrontab changes
 ==============================
 
-1.4 (unreleased)
+1.4 (2015-10-29)
 ----------------
 
 - Added an ``enabled`` option that's on by default. By setting this to false,
