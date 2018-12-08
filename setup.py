@@ -16,7 +16,8 @@ name = 'z3c.recipe.usercrontab'
 
 
 def read(*rnames):
-    return open(os.path.join(*rnames)).read()
+    with open(os.path.join(*rnames)) as f:
+        return f.read()
 
 
 setup(name=name,
@@ -55,9 +56,10 @@ setup(name=name,
       namespace_packages=['z3c', 'z3c.recipe'],
       include_package_data=True,
       install_requires=['setuptools', 'zc.buildout'],
-      extras_require = {'test': ['zope.testing']},
+      extras_require={'test': ['zope.testing']},
       entry_points={
           'zc.buildout': ['default = %s:UserCrontab' % name],
-          'zc.buildout.uninstall': ['default = %s:uninstall_usercrontab' % name]
+          'zc.buildout.uninstall': [
+              'default = %s:uninstall_usercrontab' % name]
       }
-  )
+      )

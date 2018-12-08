@@ -54,7 +54,7 @@ def test_suite():
                 # second item, e.g.
                 # (re.compile('my-[rR]eg[eE]ps'), 'my-regexps')
                 zc.buildout.testing.normalize_path,
-                ]),
-            ),
-        ))
+            ]),
+        ),
+    ))
     return suite
