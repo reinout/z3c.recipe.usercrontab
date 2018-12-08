@@ -187,7 +187,8 @@ Check that it really was added to the crontab:
 
 Re-running buildout runs the crontab recipe even when there's no change:
 
-    >>> 'Updating foo' in system(buildout)
+    >>> output = system(buildout)
+    >>> 'Updating foo' in output or 'Installing foo' in output
     True
     >>> c.read_crontab()
     >>> print(c)
@@ -201,7 +202,8 @@ This means that a crontab is fixed up if we mucked it up by hand:
     >>> c.write_crontab()
     >>> c.read_crontab()
     >>> print(c)
-    >>> 'Updating foo' in system(buildout)
+    >>> output = system(buildout)
+    >>> 'Updating foo' in output or 'Installing foo' in output
     True
     >>> c.read_crontab()
     >>> print(c)
