@@ -20,7 +20,10 @@ before_install:
 install:
     - pip install -U -e .[test]
 script:
-    - coverage run -m zope.testrunner --test-path=src
+    - export COVERAGE_HOME=$(pwd)
+    - export COVERAGE_PROCESS_START=$COVERAGE_HOME/.coveragerc
+    - coverage run -m zope.testrunner --test-path=. --all -v1
 after_success:
+    - coverage combine
     - coveralls
 cache: pip
