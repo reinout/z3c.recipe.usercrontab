@@ -1,0 +1,11 @@
+[run]
+branch = True
+source = $COVERAGE_HOME/z3c/recipe/usercrontab
+parallel = true
+data_file = $COVERAGE_HOME/.coverage
+
+[report]
+precision = 2
+
+[html]
+directory = htmlcov

@@ -1,14 +1,29 @@
 language: python
-sudo: false
 python:
   - 2.7
   - 3.4
+  - 3.5
+  - 3.6
+  - pypy
+  - pypy3
+matrix:
+    include:
+        - python: "3.7"
+          dist: xenial
 notifications:
   irc:
     channels: "irc.freenode.org#vanrees"
     on_success: change
+before_install:
+    - pip install -U pip setuptools
+    - pip install -U zope.testrunner coverage coveralls
 install:
-  - python bootstrap.py
-  - bin/buildout
+    - pip install -U -e .[test]
 script:
-  - bin/test
+    - export COVERAGE_HOME=$(pwd)
+    - export COVERAGE_PROCESS_START=$COVERAGE_HOME/.coveragerc
+    - coverage run -m zope.testrunner --test-path=. --all -v1
+after_success:
+    - coverage combine
+    - coveralls
+cache: pip
