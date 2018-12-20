@@ -11,7 +11,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '1.5'
+version = '1.6.dev0'
 name = 'z3c.recipe.usercrontab'
 
 
