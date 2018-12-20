@@ -1,7 +1,7 @@
 z3c.recipe.usercrontab changes
 ==============================
 
-1.5 (unreleased)
+1.5 (2018-12-20)
 ----------------
 
 - Officially support Python 3.5, 3.6, 3.7, PyPy and PyPy3.
